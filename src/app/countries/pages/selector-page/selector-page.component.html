@@ -1,0 +1,62 @@
+<h1 class="mt-5">Selectores anidados</h1>
+<hr>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <!-- Region -->
+    <div class="row mb-3">
+        <div class="col">
+            <label for="continent" class="form-label">Continente:</label>
+            <select formControlName="region" id="continent" class="form-control">
+                <option value="" disabled> -- Seleccione Contiente -- </option>
+                <option *ngFor="let region of regions; let i = index" [value]="region | lowercase">
+                    {{ region | titlecase }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+
+    <!-- Countries -->
+    <div class="row mb-3">
+        <div class="col">
+            <label for="country" class="form-label">Paises:</label>
+            <select formControlName="country" id="country" class="form-control">
+                <option value="" disabled> -- Seleccione Pais -- </option>
+                <option *ngFor="let country of countries; let i = index"
+                        [value]="country.name.common | lowercase">
+                    {{ country.name.common | titlecase }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+
+    <!-- Fronteras -->
+    <div class="row mb-3">
+        <div class="col">
+            <label for="frontier" class="form-label">Paises:</label>
+            <select formControlName="country" id="frontier" class="form-control">
+                <option value="" disabled> -- Seleccione Frontera -- </option>
+                <option *ngFor="let country of countries; let i = index"
+                        [value]="country.name.common | lowercase">
+                    {{ country.name.common | titlecase }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button
+                class="btn btn-primary">
+                Seleccionar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<h3 class="mt-5">Formulario</h3>
+<pre>Valid:{{ myForm.valid | json}}</pre>
+<pre>Value:{{ myForm.value | json}}</pre>
