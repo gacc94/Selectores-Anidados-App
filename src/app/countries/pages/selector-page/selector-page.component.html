@@ -17,13 +17,13 @@
     </div>
 
     <!-- Countries -->
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="countries.length !== 0">
         <div class="col">
             <label for="country" class="form-label">Paises:</label>
             <select formControlName="country" id="country" class="form-control">
                 <option value="" disabled> -- Seleccione Pais -- </option>
                 <option *ngFor="let country of countries; let i = index"
-                        [value]="country.name.common | lowercase">
+                        [value]="country.cca3">
                     {{ country.name.common | titlecase }}
                 </option>
             </select>
@@ -32,18 +32,26 @@
     </div>
 
     <!-- Fronteras -->
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="frontiers.length !== 0">
         <div class="col">
-            <label for="frontier" class="form-label">Paises:</label>
-            <select formControlName="country" id="frontier" class="form-control">
+            <label for="frontier" class="form-label">Fronteras:</label>
+            <select formControlName="frontier" id="frontier" class="form-control" >
                 <option value="" disabled> -- Seleccione Frontera -- </option>
-                <option *ngFor="let country of countries; let i = index"
-                        [value]="country.name.common | lowercase">
-                    {{ country.name.common | titlecase }}
+                <option *ngFor="let frontier of frontiers; let i = index"
+                        [value]="frontier.cca3">
+                    {{ frontier.name.common }}
                 </option>
             </select>
 
         </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+       <div class="col">
+           <div class="alert alert-primary">
+               Cargando ...
+           </div>
+       </div>
     </div>
 
     <div class="row">
